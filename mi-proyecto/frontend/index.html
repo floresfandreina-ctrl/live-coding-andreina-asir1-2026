@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gestor de Notas Privadas</title>
+
+  <!-- RUTAS RELATIVAS: funcionan en file:// y en http://localhost:8080 -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>Gestor de Notas Privadas</h1>
+      <p class="muted">Accede para crear y ver tus notas.</p>
+    </header>
+
+    <section class="card">
+      <div id="msg" class="msg" aria-live="polite"></div>
+
+      <!-- LOGIN -->
+      <form id="loginForm" class="form">
+        <h2>Iniciar sesión</h2>
+
+        <label>
+          Email
+          <input name="email" type="email" placeholder="tu@email.com" required autocomplete="email" />
+        </label>
+
+        <label>
+          Contraseña
+          <input name="password" type="password" placeholder="••••••••" required autocomplete="current-password" />
+        </label>
+
+        <button type="submit">Entrar</button>
+
+        <p class="switch">
+          ¿No tienes cuenta?
+          <a href="#" id="goRegister">Regístrate</a>
+        </p>
+      </form>
+
+      <!-- REGISTRO -->
+      <form id="registerForm" class="form hidden">
+        <h2>Registrarse</h2>
+
+        <label>
+          Email
+          <input name="email" type="email" placeholder="tu@email.com" required autocomplete="email" />
+        </label>
+
+        <label>
+          Contraseña
+          <input name="password" type="password" placeholder="mínimo 8 caracteres" required autocomplete="new-password" />
+        </label>
+
+        <label>
+          Confirmar contraseña
+          <input name="passwordConfirm" type="password" placeholder="repite la contraseña" required autocomplete="new-password" />
+        </label>
+
+        <button type="submit">Crear cuenta</button>
+
+        <p class="switch">
+          ¿Tienes cuenta?
+          <a href="#" id="goLogin">Iniciar sesión</a>
+        </p>
+      </form>
+    </section>
+
+    <section class="card hidden" id="appArea">
+      <div class="row">
+        <h2>Mis notas</h2>
+        <button id="logoutBtn" class="btn-secondary" type="button">Cerrar sesión</button>
+      </div>
+
+      <form id="notaForm" class="form">
+        <label>
+          Título
+          <input name="titulo" type="text" maxlength="120" placeholder="Título de la nota" required />
+        </label>
+
+        <label>
+          Contenido
+          <textarea name="contenido" maxlength="5000" placeholder="Escribe tu nota..." required></textarea>
+        </label>
+
+        <button type="submit">Guardar nota</button>
+      </form>
+
+      <div class="row">
+        <button id="refreshBtn" class="btn-secondary" type="button">Refrescar</button>
+        <span class="muted" id="notesCount"></span>
+      </div>
+
+      <ul id="notesList" class="list"></ul>
+    </section>
+
+    <footer class="footer muted">
+      <small>Tip anti-XSS: las notas se muestran como texto (sin HTML).</small>
+    </footer>
+  </main>
+
+  <!-- IMPORTANTE: también ruta relativa -->
+  <script src="./script.js"></script>
+</body>
+</html>
