@@ -1,0 +1,15 @@
+services:
+  api:
+    build: ./backend
+    container_name: gestor_notas_api
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - DB_PATH=/app/data/app.db
+      - JWT_SECRET=cambia_esto_en_serio
+    volumes:
+      - api_data:/app/data
+
+volumes:
+  api_data:
